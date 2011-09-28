@@ -7,6 +7,6 @@
 	</object>
 	<object id="obj2">
 		<position x="2" y="2" time="12:01:00" />
-		<position x="1" y="2" time="12:01:00" />
+		<position x="1" y="2" time="12:01:01" />
 	</object>
 </scenario>
