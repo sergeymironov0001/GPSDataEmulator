@@ -20,4 +20,12 @@ public interface Event {
 	 * Метод запускающий событие
 	 */
 	public void startEvent();
+
+	/**
+	 * Метод определяющий являются ли события эквивалентными
+	 * 
+	 * @param obj
+	 * @return
+	 */
+	public boolean equals(Object obj);
 }

@@ -32,13 +32,14 @@ public class EventsTimer {
 	}
 
 	public void addEvent(Event event) {
-
+		events.add(event);
 	}
 
 	public void removeEvent(Event event) {
-
+		events.remove(event);
 	}
 
 	public void clearEvents() {
+		events.clear();
 	}
 }
