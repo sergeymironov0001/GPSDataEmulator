@@ -14,8 +14,8 @@
 
 	<xsd:complexType name="ObjectType">
 		<xsd:sequence>
-			<xsd:element name="position" minOccurs="0" maxOccurs="unbounded"
-				type="PositionType">
+			<xsd:element name="changePosition" minOccurs="0"
+				maxOccurs="unbounded" type="PositionType">
 			</xsd:element>
 		</xsd:sequence>
 		<xsd:attribute name="id" type="xsd:ID" use="required"></xsd:attribute>
