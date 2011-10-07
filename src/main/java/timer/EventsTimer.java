@@ -2,10 +2,10 @@ package timer;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collections;
 import java.util.Comparator;
-import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.swing.Timer;
 
@@ -19,11 +19,11 @@ public class EventsTimer {
 	/**
 	 * Очередь прошедших событий
 	 */
-	private SortedSet<Event> pastEvents;
+	private List<Event> pastEvents;
 	/**
 	 * Очередь будущих событий событий
 	 */
-	private SortedSet<Event> futureEvents;
+	private List<Event> futureEvents;
 
 	/**
 	 * Текущее время таймера
@@ -40,9 +40,8 @@ public class EventsTimer {
 	private Timer timer;
 
 	public EventsTimer() {
-		EventsComparator eventsComparator = new EventsComparator();
-		pastEvents = new TreeSet<Event>(eventsComparator);
-		futureEvents = new TreeSet<Event>(eventsComparator);
+		pastEvents = new LinkedList<Event>();
+		futureEvents = new LinkedList<Event>();
 		currentTime = new Time();
 		nextStartEventTime = new Time();
 		timer = new Timer(Time.MILLISECONDS_IN_SECOND, new ActionListener() {
@@ -53,11 +52,11 @@ public class EventsTimer {
 
 	}
 
-	public Set<Event> getPastEvents() {
+	public List<Event> getPastEvents() {
 		return pastEvents;
 	}
 
-	public Set<Event> getFutureEvents() {
+	public List<Event> getFutureEvents() {
 		return futureEvents;
 	}
 
@@ -73,14 +72,17 @@ public class EventsTimer {
 		if (!isRunning()) {
 			if (event.getEventStartTime().compareTo(currentTime) < 0) {
 				pastEvents.add(event);
+				Collections.sort(pastEvents, new EventsComparator());
 			} else {
 				futureEvents.add((event));
 				// Если событие заняло первое место в очереди на выполнение,
 				// то изменяем время запуска новго события
-				if (futureEvents.first().equals(event)) {
+				if (futureEvents.get(0).equals(event)) {
 					nextStartEventTime = event.getEventStartTime();
 				}
+				Collections.sort(futureEvents, new EventsComparator());
 			}
+
 			return true;
 		}
 		return false;
@@ -95,7 +97,7 @@ public class EventsTimer {
 			if (futureEvents.contains(event)) {
 				futureEvents.remove(event);
 				nextStartEventTime =
-						futureEvents.isEmpty() ? futureEvents.first()
+						futureEvents.isEmpty() ? futureEvents.get(0)
 								.getEventStartTime() : new Time();
 			}
 		}
@@ -129,6 +131,7 @@ public class EventsTimer {
 		currentTime.setSeconds(0);
 
 		futureEvents.addAll(pastEvents);
+		Collections.sort(futureEvents, new EventsComparator());
 		pastEvents.clear();
 	}
 
@@ -138,6 +141,7 @@ public class EventsTimer {
 
 	synchronized private void updateTime() {
 		currentTime.addSeconds(1);
+		System.out.println(currentTime);
 		checkEvents();
 	}
 
@@ -146,12 +150,15 @@ public class EventsTimer {
 	 * есть, то запускает его
 	 */
 	private void checkEvents() {
-		if (currentTime.equals(nextStartEventTime)) {
-			Event currentEvent = futureEvents.first();
+		if (currentTime.equals(nextStartEventTime) && !futureEvents.isEmpty()) {
+			Event currentEvent = futureEvents.get(0);
 			futureEvents.remove(currentEvent);
 			pastEvents.add(currentEvent);
 			new Thread(currentEvent).start();
-			nextStartEventTime = futureEvents.first().getEventStartTime();
+			if (!futureEvents.isEmpty()) {
+				nextStartEventTime = futureEvents.get(0).getEventStartTime();
+			}
+
 			checkEvents();
 		}
 	}

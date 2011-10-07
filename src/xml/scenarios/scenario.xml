@@ -4,6 +4,7 @@
 	<object id="obj1">
 		<changePosition x="1" y="1" time="00:00:05" />
 		<changePosition x="1" y="1" time="00:00:15" />
+		<changePosition x="2" y="2" time="00:00:17" />
 	</object>
 	<object id="obj2">
 		<changePosition x="2" y="2" time="00:00:17" />

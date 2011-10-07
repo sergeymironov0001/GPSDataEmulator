@@ -157,7 +157,7 @@ public class Time implements Cloneable, Comparable<Time> {
 			return 0;
 		}
 		if (this.hours < time.hours || this.minutes < time.minutes
-				|| this.seconds < this.seconds) {
+				|| this.seconds < time.seconds) {
 			return -1;
 		}
 		return 1;
