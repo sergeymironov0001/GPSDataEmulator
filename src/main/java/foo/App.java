@@ -18,8 +18,21 @@ import xml.GPSDataScenarioSAXParser;
  * 
  */
 public class App {
+
+	public void Increment(Short sS) {
+		sS = new Short((short) (sS.intValue() + 1));
+		// sS = new Short((short) (sS + 1));
+		System.out.println(sS);
+	}
+
+	public void result(Integer x) {
+		Short sX = new Short((short) x.shortValue());
+		Increment(sX);
+		x = new Integer(123);
+		System.out.println("New value is " + sX);
+	}
+
 	public static void main(String[] args) {
-		System.out.println("Hello World!");
 		EventsTimer eventsTimer = new EventsTimer();
 
 		SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -40,7 +53,7 @@ public class App {
 		}
 		eventsTimer.start();
 
-		JFrame frame = new JFrame();
+		Frame frame = new Frame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
