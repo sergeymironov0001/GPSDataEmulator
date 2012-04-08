@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="../schemes/scenario.xsd">
-	<object id="obj1">
-		<changePosition x="1" y="1" time="00:00:05" />
-		<changePosition x="1" y="1" time="00:00:15" />
-		<changePosition x="2" y="2" time="00:00:17" />
-	</object>
-	<object id="obj2">
-		<changePosition x="2" y="2" time="00:00:17" />
-		<changePosition x="1" y="2" time="00:00:12" />
+	<object id="в123пр69">
+		<changePosition x="35.89225" y="56.82470" time="00:00:01" />
+		<changePosition x="35.89422" y="56.82592" time="00:00:02" />
+		<changePosition x="35.89602" y="56.82691" time="00:00:03" />
+		<changePosition x="35.89778" y="56.82834" time="00:00:04" />
+		<changePosition x="35.90032" y="56.83043" time="00:00:05" />
+		<changePosition x="35.90366" y="56.83310" time="00:00:06" />
 	</object>
 </scenario>

@@ -1,4 +1,6 @@
-#Wed Sep 28 16:05:16 MSD 2011
+#Sun Apr 08 20:17:44 MSD 2012
 eclipse.preferences.version=1
-encoding//src/main/java/timer/Event.java=UTF-8
+encoding//src/main/java=UTF-8
+encoding//src/main/java/controller/timer/IEvent.java=UTF-8
+encoding//src/test/java=UTF-8
 encoding/<project>=UTF-8
